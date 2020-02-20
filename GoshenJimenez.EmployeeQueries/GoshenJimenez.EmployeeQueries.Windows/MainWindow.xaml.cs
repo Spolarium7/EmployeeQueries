@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoshenJimenez.EmployeeQueries.Windows.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,10 @@ namespace GoshenJimenez.EmployeeQueries.Windows
         public MainWindow()
         {
             InitializeComponent();
+            DataAccess dataAccess = new DataAccess();
+            var employee = dataAccess.Employees.FirstOrDefault();
+
+            MessageBox.Show(employee.EmailAddress);
         }
     }
 }
