@@ -6,16 +6,17 @@ using MySql.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GoshenJimenez.EmployeeQueries.Windows.Models;
 
-namespace GoshenJimenez.EmployeeQueries.DAL
+namespace GoshenJimenez.EmployeeQueries.Windows.DAL
 {
     public class DataAccess : DbContext
     {
         public DataAccess() : base("myConnectionString")
         {
-            
+
         }
 
-
+        public DbSet<Employee> Employees { get; set; }
     }
 }
