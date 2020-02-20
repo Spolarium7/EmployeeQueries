@@ -14,7 +14,7 @@ namespace GoshenJimenez.EmployeeQueries.Windows.DAL
     {
         public DataAccess() : base("myConnectionString")
         {
-
+            Database.SetInitializer(new GoshenJimenez.EmployeeQueries.Windows.DAL.DataInitializer());
         }
 
         public DbSet<Employee> Employees { get; set; }
