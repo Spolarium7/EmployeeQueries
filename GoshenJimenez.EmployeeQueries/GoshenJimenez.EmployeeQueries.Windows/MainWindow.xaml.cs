@@ -1,4 +1,5 @@
-﻿using GoshenJimenez.EmployeeQueries.Windows.DAL;
+﻿using GoshenJimenez.EmployeeQueries.Windows.BLL;
+using GoshenJimenez.EmployeeQueries.Windows.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,9 @@ namespace GoshenJimenez.EmployeeQueries.Windows
         public MainWindow()
         {
             InitializeComponent();
-            DataAccess dataAccess = new DataAccess();
-            var employee = dataAccess.Employees.FirstOrDefault();
+            var employees = EmployeesBLL.GetEmployees(2,3);
+            grEmployees.ItemsSource = employees.Items;
 
-            MessageBox.Show(employee.EmailAddress);
         }
     }
 }

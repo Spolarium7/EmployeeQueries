@@ -87,8 +87,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BLL\EmployeesBLL.cs" />
     <Compile Include="DAL\DataAccess.cs" />
     <Compile Include="DAL\DataInitializer.cs" />
+    <Compile Include="Infrastructure\Page.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
