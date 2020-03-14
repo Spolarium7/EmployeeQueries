@@ -11,13 +11,27 @@ namespace GoshenJimenez.EmployeeQueries.Windows.BLL
 {
     public static class EmployeesBLL
     {
-        public static Page<Employee> GetEmployees(long pageIndex = 1, long pageSize = 3)
+        public static Page<Employee> SearchEmployees(long pageIndex = 1, long pageSize = 3, string keyword = "")
         {
             var result = new Page<Employee>();
 
             DataAccess dataAccess = new DataAccess();
 
-            var query = dataAccess.Employees.AsQueryable();
+            List<Employee> query;
+            if (string.IsNullOrEmpty(keyword))
+            {
+                query = dataAccess.Employees.ToList();
+            }
+            else
+            {
+                query = dataAccess.Employees
+                                  .Where(e => 
+                                            e.FirstName.ToLower().Contains(keyword.ToLower())
+                                         || e.LastName.ToLower().Contains(keyword.ToLower())
+                                  )
+                                  .ToList();
+            }
+            
             result.PageIndex = pageIndex;
             result.PageSize = pageSize;
             result.ItemCount = query.Count();
@@ -32,11 +46,26 @@ namespace GoshenJimenez.EmployeeQueries.Windows.BLL
 
             var skip = (int)((result.PageIndex - 1) * result.PageSize);
 
-            result.Items = dataAccess.Employees
-                                .OrderBy(e => e.Id)
-                                .Skip(skip)
-                                .Take((int)result.PageSize)
-                                .ToList();
+            if (string.IsNullOrEmpty(keyword))
+            {
+                result.Items = dataAccess.Employees
+                                    .OrderBy(e => e.Id)
+                                    .Skip(skip)
+                                    .Take((int)result.PageSize)
+                                    .ToList();
+            }
+            else
+            {
+                result.Items = dataAccess.Employees
+                    .Where(e =>
+                                e.FirstName.ToLower().Contains(keyword.ToLower())
+                             || e.LastName.ToLower().Contains(keyword.ToLower())
+                    )
+                    .OrderBy(e => e.Id)
+                    .Skip(skip)
+                    .Take((int)result.PageSize)
+                    .ToList();
+            }
 
             return result;
         }

@@ -25,9 +25,15 @@ namespace GoshenJimenez.EmployeeQueries.Windows
         public MainWindow()
         {
             InitializeComponent();
-            var employees = EmployeesBLL.GetEmployees(2,3);
+            var employees = EmployeesBLL.SearchEmployees(2,3);
             grEmployees.ItemsSource = employees.Items;
 
+        }
+
+        private void CmdSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var employees = EmployeesBLL.SearchEmployees(1, 10, txtKeyword.Text);
+            grEmployees.ItemsSource = employees.Items;
         }
     }
 }

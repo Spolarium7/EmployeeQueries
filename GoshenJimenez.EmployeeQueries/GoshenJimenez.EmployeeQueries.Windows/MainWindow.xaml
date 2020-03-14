@@ -8,6 +8,8 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <DataGrid x:Name="grEmployees" HorizontalAlignment="Left" Height="198" Margin="38,81,0,0" VerticalAlignment="Top" Width="718"/>
+        <TextBox Name="txtKeyword" HorizontalAlignment="Left" Height="23" Margin="38,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="622"/>
+        <Button Name="cmdSearch" Content="Search" HorizontalAlignment="Left" Margin="681,39,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="CmdSearch_Click"/>
 
     </Grid>
 </Window>
